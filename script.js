@@ -75,7 +75,7 @@ const members = [
     instagram: "https://www.instagram.com/fi.idhaah?igsh=MTR3ZzQ3dzljeXllNA=="
   },
   {
-    name: "Safa",
+    name: "Safa sirin",
     username: "safa.srnn",
     instagram: "https://www.instagram.com/safa.srnn?igsh=eXhqNXlzcjllM2Nn"
   },
