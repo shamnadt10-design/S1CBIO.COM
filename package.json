@@ -1,0 +1,14 @@
+{
+  "name": "s1cbio-com",
+  "version": "1.0.0",
+  "description": "S1C Members Website",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static HTML - no build step required'",
+    "lint": "echo 'No linter configured'"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
