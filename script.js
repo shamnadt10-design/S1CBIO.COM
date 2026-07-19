@@ -139,13 +139,16 @@ const members = [
 // ===========================
 const memberList = document.getElementById("memberList");
 const search = document.getElementById("search");
-
-function showMembers(list){
-    if(!memberList) return;
-    memberList.innerHTML="";
-    list.forEach((member,index)=>{
+function showMembers(list, isInitialLoad = false) {
+    if (!memberList) return;
+    memberList.innerHTML = "";
+    
+    list.forEach((member, index) => {
+        // Only stagger delays on initial load so live filtering stays completely lag-free
+        const delay = isInitialLoad ? `${index * 0.06}s` : '0s';
+        
         memberList.innerHTML += `
-        <div class="memberCard" style="animation-delay:${index*0.1}s">
+        <div class="memberCard" style="animation-delay: ${delay};">
             <div>
                 <h2>${member.name}</h2>
                 <p>@${member.username}</p>
@@ -157,6 +160,22 @@ function showMembers(list){
         `;
     });
 }
+
+// Initial load gets the smooth staggered delay effect
+showMembers(members, true);
+
+// Live Search handles updates instantaneously
+if (search) {
+    search.addEventListener("keyup", () => {
+        const value = search.value.toLowerCase();
+        const filtered = members.filter(member =>
+            member.name.toLowerCase().includes(value) ||
+            member.username.toLowerCase().includes(value)
+        );
+        showMembers(filtered, false);
+    });
+}
+
 
 showMembers(members);
 
@@ -175,64 +194,55 @@ if(search){
 const reveals = document.querySelectorAll(".reveal");
 
 function revealOnScroll(){
-
     reveals.forEach((item)=>{
-
         const windowHeight = window.innerHeight;
-
         const revealTop = item.getBoundingClientRect().top;
-
         if(revealTop < windowHeight - 80){
-
             item.classList.add("active");
-
         }
-
     });
-
 }
 
 window.addEventListener("scroll", revealOnScroll);
-
 revealOnScroll();
 
 /* ===========================
    PREMIUM PARTICLES
 =========================== */
-
 const particleContainer = document.getElementById("particles");
 
 if(particleContainer){
+    setTimeout(()=>{
+        setInterval(()=>{
+            const particle=document.createElement("div");
+            particle.className="particle";
+            particle.style.left=Math.random()*100+"%";
+            const size=Math.random()*7+3;
+            particle.style.width=size+"px";
+            particle.style.height=size+"px";
+            particle.style.animationDuration=(10+Math.random()*8)+"s";
+            particle.style.opacity=Math.random();
+            particleContainer.appendChild(particle);
+            setTimeout(()=>{
+                particle.remove();
+            },18000);
+        },350);
+    },500);
+}
 
-setTimeout(()=>{
+/* ===========================
+   LIGHT/DARK THEME TOGGLE (NEW SYSTEM)
+=========================== */
+const themeToggle = document.getElementById('themeToggle');
 
-setInterval(()=>{
-
-const particle=document.createElement("div");
-
-particle.className="particle";
-
-particle.style.left=Math.random()*100+"%";
-
-const size=Math.random()*7+3;
-
-particle.style.width=size+"px";
-particle.style.height=size+"px";
-
-particle.style.animationDuration=(10+Math.random()*8)+"s";
-
-particle.style.opacity=Math.random();
-
-particleContainer.appendChild(particle);
-
-setTimeout(()=>{
-
-particle.remove();
-
-},18000);
-
-},350);
-
-},500);
-
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('light-mode');
+        
+        if (document.documentElement.classList.contains('light-mode')) {
+            localStorage.setItem('theme', 'light');
+        } else {
+            localStorage.setItem('theme', 'dark');
+        }
+    });
 }

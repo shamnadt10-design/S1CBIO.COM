@@ -2,60 +2,70 @@
 <html lang="en">
 
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>S1C</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<link rel="prefetch" href="members.html">
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S1C</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="prefetch" href="members.html">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Initialize theme fast to prevent bright flashes on load -->
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.add('light-mode');
+        }
+    </script>
 </head>
 
 <body>
 
 <div class="background">
+    <div class="glow"></div>
     <div id="particles"></div>
 </div>
 
+<!-- Mode Button -->
+<button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M16.243 17.657l.707.707M7.757 6.364l.707-.707M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+    </svg>
+    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+    </svg>
+</button>
+
+<!-- Main Landing Container -->
 <div class="container">
+    <!-- Logo Wrapper -->
+    <div class="logo-wrap">
+        <img src="images/logo.png" class="logo">
+    </div>
 
-    <!-- Logo (optional) -->
-    <!-- Replace logo.png later -->
-    <img src="logo.png" class="logo">
-
-    <h1>WELCOME TO S1C</h1>
+    <h1>Welcome to S1C</h1>
 
     <p class="subtitle">
-    One Team.<br>
-    One Family.
-</p>
+        One Team.<br>
+        One Family.
+    </p>
 
-<p class="batch">
-    Batch 2026–2027
-</p>
+    <p class="batch">
+        Batch 2026–2027
+    </p>
+
+    <a href="members.html" class="enterBtn">
+        VIEW MEMBERS
+    </a>
+</div>
 
 <a href="https://instagram.com/shamnadeeey" target="_blank" class="credit">
     Crafted by @shamnadeeey
 </a>
 
-    <a href="members.html" class="enterBtn">
-        VIEW MEMBERS
-    </a>
-
-</div>
-
 <script src="script.js"></script>
-
 </body>
 
 </html>
