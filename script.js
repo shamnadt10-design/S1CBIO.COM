@@ -143,15 +143,15 @@ const search = document.getElementById("search");
 function showMembers(list){
     if(!memberList) return;
     memberList.innerHTML="";
-    list.forEach(member=>{
+    list.forEach((member,index)=>{
         memberList.innerHTML += `
-        <div class="memberCard">
+        <div class="memberCard" style="animation-delay:${index*0.1}s">
             <div>
                 <h2>${member.name}</h2>
                 <p>@${member.username}</p>
             </div>
-            <a href="${member.instagram}" target="_blank">
-                Instagram
+            <a href="${member.instagram}" target="_blank" aria-label="Instagram" class="igIcon">
+                <i class="fa-brands fa-instagram"></i>
             </a>
         </div>
         `;
@@ -170,4 +170,69 @@ if(search){
         );
         showMembers(filtered);
     });
+}
+
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll(){
+
+    reveals.forEach((item)=>{
+
+        const windowHeight = window.innerHeight;
+
+        const revealTop = item.getBoundingClientRect().top;
+
+        if(revealTop < windowHeight - 80){
+
+            item.classList.add("active");
+
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll", revealOnScroll);
+
+revealOnScroll();
+
+/* ===========================
+   PREMIUM PARTICLES
+=========================== */
+
+const particleContainer = document.getElementById("particles");
+
+if(particleContainer){
+
+setTimeout(()=>{
+
+setInterval(()=>{
+
+const particle=document.createElement("div");
+
+particle.className="particle";
+
+particle.style.left=Math.random()*100+"%";
+
+const size=Math.random()*7+3;
+
+particle.style.width=size+"px";
+particle.style.height=size+"px";
+
+particle.style.animationDuration=(10+Math.random()*8)+"s";
+
+particle.style.opacity=Math.random();
+
+particleContainer.appendChild(particle);
+
+setTimeout(()=>{
+
+particle.remove();
+
+},18000);
+
+},350);
+
+},500);
+
 }
